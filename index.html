@@ -12,12 +12,10 @@
 
     <style type="text/css">
         .tab_text{
-            background-color: darkseagreen;
-            border: 2px solid blue;
-            height: 60px;
-            border-radius: 25px;
-            margin-top: 5px;
-            /*margin-bottom: 5px;*/
+            margin-top: 10px;
+        }
+        .tab_text a{
+            width: 100%;
         }
     </style>
 
@@ -27,31 +25,39 @@
 
 
 <div class="container">
+    <div class="text-center">
+        <strong>BlueOceanPay Demo</strong>
+    </div>
+
+
     <div class="text-center row">
-        <div class="col-md-4 tab_text">
-            <span>
-                <a href="demo/login.html" target="_blank">Login In</a>
-            </span>
+
+        <div class="col-md-12 tab_text">
+            <a href="demo/login.html" class="btn btn-success" target="_blank">Login In</a>
         </div>
 
-        <div class="col-md-4 tab_text">
-            <a href="demo/qrcode_pay.php" target="_blank">QRCode Pay</a>
+        <div class="col-md-12 tab_text">
+            <a href="demo/qrcode_pay.php" class="btn btn-success" target="_blank">QRCode Pay</a>
         </div>
 
-        <div class="col-md-4 tab_text">
-            <a href="demo/refund.php" target="_blank">Refund</a>
-        </div>
-        <div class="col-md-4 tab_text">
-            <a href="demo/deal_order.php" target="_blank">Deal Order</a>
-        </div>
-        <div class="col-md-4 tab_text">
-            <a href="demo/order_list.php" target="_blank">Order List</a>
+        <div class="col-md-12 tab_text">
+            <a href="demo/refund.php" class="btn btn-success" target="_blank">Refund</a>
         </div>
 
+        <div class="col-md-12 tab_text">
+            <a href="demo/deal_order.php" class="btn btn-success" target="_blank">Deal Order</a>
+        </div>
 
+        <div class="col-md-12 tab_text">
+            <a href="demo/order_list.php" class="btn btn-success" target="_blank">Order List</a>
+        </div>
 
+    </div>
 
-
+    <div style="margin-top: 100px">
+        <span>
+            代码下载路径:<a href="https://github.com/blueoceanpay/payment-demo" target="_blank">https://github.com/blueoceanpay/payment-demo</a>
+        </span>
     </div>
 
 </div>
