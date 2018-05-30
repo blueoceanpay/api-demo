@@ -5,9 +5,9 @@ error_reporting(E_ALL^E_NOTICE);
 try{
 
     // Curl请求类
-    require_once "..\utils\CurlRequest.php";
+    require_once "../utils/CurlRequest.php";
     // 获取配置
-    $config_data = (array)require_once "..\config.php";
+    $config_data = (array)require_once "../config.php";
     // 获取参数
     $data = $_POST;
 
