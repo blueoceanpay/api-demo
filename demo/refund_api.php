@@ -11,13 +11,13 @@ if (empty($user_params) || empty($api_host)) {
 try{
 
     // 获取Curl
-    require_once "..\utils\CurlRequest.php";
+    require_once "../utils/CurlRequest.php";
     // 获取签名类
-    require_once "..\utils\Signature.php";
+    require_once "../utils/Signature.php";
     // QRCode
-    require_once "..\utils\QRCodeUtil.php";
+    require_once "../utils/QRCodeUtil.php";
     // 获取配置
-    $config_data = (array)require_once "..\config.php";
+    $config_data = (array)require_once "../config.php";
 
     $params = $_POST;
 
