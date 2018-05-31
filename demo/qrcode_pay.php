@@ -212,8 +212,10 @@ require_once "../utils/CheckMobile.php";
                 });
 
                 $.post("./deal_order_api.php",{"out_trade_no":out_trade_no,"submit_type":"check"},function (result) {
-                    layer.close(index2);
-
+                    setTimeout(function () {
+                        layer.close(index2);
+                    },2000)
+                    
                     var result = JSON.parse(result);
 
                     //$('#sign_string').html(result['data']['signString']);
