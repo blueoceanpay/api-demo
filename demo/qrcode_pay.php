@@ -214,20 +214,19 @@ require_once "../utils/CheckMobile.php";
                 $.post("./deal_order_api.php",{"out_trade_no":out_trade_no,"submit_type":"check"},function (result) {
                     setTimeout(function () {
                         layer.close(index2);
-                    },2000)
-                    
+
+                    },1000)
+
                     var result = JSON.parse(result);
 
-                    //$('#sign_string').html(result['data']['signString']);
                     if (result.code == 200){
                         $('#response_params').html(formatJson(result['data']['response_params']))
-                        //$('#request_params').html(formatJson(result['data']['request_params']))
                     }
 
                 })
 
                 refresh_data()
-            },8000)
+            },6000)
         }
     }
 
