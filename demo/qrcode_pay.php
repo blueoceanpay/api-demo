@@ -63,12 +63,22 @@ require_once "../utils/CheckMobile.php";
                 </div>
                 <div class="form-group">
                     <label for="notify_url">notify_url:</label>
-                    <input type="text" class="form-control" name="notify_url" id="notify_url" placeholder="异步通知url">
+                    <input type="text" class="form-control" name="notify_url" id="notify_url" placeholder="异步通知url" value="<?php echo $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/demo/get_asyn_note.php' ?>">
                 </div>
 
                 <div class="form-group">
                     <button type="button" class="form-control btn btn-success" id="submit">Submit</button>
                 </div>
+
+                <div>
+                    <span>查看回调数据：</span>
+                    <ol>
+                        <li>下面的地址notify_url为默认值时有效，仅供参考</li>
+                        <li>用户支付成功才有回调</li>
+                    </ol>
+                    <a href="<?php echo $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/demo/asyn_note_web.php' ?>" target="_blank"><?php echo $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/demo/asyn_note_web.php' ?></a>
+                </div>
+
             </form>
 
         </div>
@@ -101,6 +111,9 @@ require_once "../utils/CheckMobile.php";
 </div>
 
 <script>
+
+    // 全局的
+    out_trade_no = "";
 
     $(function () {
         var payment = $('#payment').val();
@@ -171,13 +184,50 @@ require_once "../utils/CheckMobile.php";
                     $('.go_to_pay').attr("href",result['data']['response_params']['qrcode']);
                 }
 
+                window.out_trade_no = result.data.response_params.out_trade_no;
+
                 $('#response_params').html(formatJson(result['data']['response_params']))
                 $('#request_params').html(formatJson(result['data']['request_params']))
+
+
+                // 调用刷新
+                refresh_data();
 
             }
         });
 
     });
+
+    // 刷新数据
+    function refresh_data() {
+
+        if (out_trade_no != ""){
+            setTimeout(function () {
+
+                // 加载动画
+                //var index2 = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+                var index2 = layer.msg('刷新订单状态', {
+                    icon: 16
+                    ,shade: 0.01
+                });
+
+                $.post("./deal_order_api.php",{"out_trade_no":out_trade_no,"submit_type":"check"},function (result) {
+                    layer.close(index2);
+
+                    var result = JSON.parse(result);
+
+                    //$('#sign_string').html(result['data']['signString']);
+                    if (result.code == 200){
+                        $('#response_params').html(formatJson(result['data']['response_params']))
+                        //$('#request_params').html(formatJson(result['data']['request_params']))
+                    }
+
+                })
+
+                refresh_data()
+            },8000)
+        }
+    }
 
 
 </script>

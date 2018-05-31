@@ -19,13 +19,14 @@ class CurlRequest
      * 执行并获取结果；
      * 释放CURL连接句柄。
      */
-    public function curl($url,$param=array(),$method="GET",$cookie=false,$ssl=false,$is_json=false){
+    public static function curl($url,$param=array(),$method="GET",$cookie=false,$ssl=false,$is_json=false){
         // 代理信息
         //user_agent,请求代理信息
         $user_agent = isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:53.0) Gecko/20100101 Firefox/53.0";
 
         // 1. 初始化
         $ch = curl_init();
+
         // 2. 设置选项，包括URL
         curl_setopt($ch,CURLOPT_URL,$url);
         //设置获取的信息以文件流的形式返回，而不是直接输出。
@@ -76,6 +77,8 @@ class CurlRequest
         $error_msg = curl_error($ch);
         // 4. 释放curl句柄
         curl_close($ch);
+
+
 
         if($output === FALSE ){
             return array("status"=>"error","message"=>$error_msg);

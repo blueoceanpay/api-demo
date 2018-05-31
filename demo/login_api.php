@@ -4,12 +4,17 @@ error_reporting(E_ALL^E_NOTICE);
 
 try{
 
+
+
     // Curl请求类
     require_once "../utils/CurlRequest.php";
+
+
     // 获取配置
     $config_data = (array)require_once "../config.php";
     // 获取参数
     $data = $_POST;
+
 
     if (in_array($data['api_host'],$config_data['api_host'])){
         $api_host = $data['api_host'];
@@ -22,8 +27,14 @@ try{
     // 获取API
     $login_url = $api_host.'/user/login';
 
+
+
     $curl = new \CurlRequest();
+
+
+
     $result_data = $curl->curl($login_url,$data,'POST',false,true,true);
+
 
     if ($result_data['status'] == "error"){
         throw new \Exception($result_data['message']);
