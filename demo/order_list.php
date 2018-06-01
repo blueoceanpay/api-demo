@@ -24,6 +24,10 @@ if (empty($user_params) || empty($api_host)) {
 
 <div class="container-fluid">
 
+    <div class="text-center">
+        <strong>BlueOceanPay Order List Demo</strong>
+    </div>
+
     <div>
         <form id="form" action="order_list_api.php" class="form-inline">
 
@@ -74,7 +78,6 @@ if (empty($user_params) || empty($api_host)) {
         </form>
     </div>
 
-
     <div>
         <table class="table table-bordered">
             <thead>
@@ -104,8 +107,6 @@ if (empty($user_params) || empty($api_host)) {
         </table>
     </div>
 </div>
-
-
 
 <script>
 

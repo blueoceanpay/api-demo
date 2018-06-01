@@ -8,6 +8,7 @@ if (empty($user_params) || empty($api_host)) {
     header("location:login.html");
 }
 require_once "../utils/CheckMobile.php";
+require_once "../utils/Language.php";
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +39,10 @@ require_once "../utils/CheckMobile.php";
                 <div class="form-group">
                     <label for="payment">Payment:</label>
                     <select name="payment" class="form-control" id="payment">
-                        <option value="micropay">刷卡支付</option>
-                        <option value="alipay.qrcode">支付宝二维码</option>
-                        <option value="wechat.qrcode">微信二维码</option>
-                        <option value="blueocean.qrcode">混合二维码</option>
+                        <option value="micropay"><?php echo Language::lang('credit_card_payment')?></option>
+                        <option value="alipay.qrcode"><?php echo Language::lang('alipay_qrcode');?></option>
+                        <option value="wechat.qrcode"><?php echo Language::lang('wechat_qrcode')?></option>
+                        <option value="blueocean.qrcode"><?php echo Language::lang('mixture_qrcode');?></option>
                     </select>
                 </div>
                 <div class="form-group form_code">
@@ -67,14 +68,16 @@ require_once "../utils/CheckMobile.php";
                 </div>
 
                 <div class="form-group">
-                    <button type="button" class="form-control btn btn-success" id="submit">Submit</button>
+                    <button type="button" class="form-control btn btn-success" id="submit"><?php echo Language::lang('submit');?></button>
                 </div>
 
                 <div>
                     <span>查看回调数据：</span>
                     <ol>
-                        <li>下面的地址notify_url为默认值时有效，仅供参考</li>
+                        <li>下面的地址notify_url为默认值时有效</li>
+                        <li>数据仅供参考，接入时请传你系统真实地址</li>
                         <li>用户支付成功才有回调</li>
+                        <li>只能查看最新一条的回调数据</li>
                     </ol>
                     <a href="<?php echo $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/demo/asyn_note_web.php' ?>" target="_blank"><?php echo $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/demo/asyn_note_web.php' ?></a>
                 </div>
@@ -85,24 +88,24 @@ require_once "../utils/CheckMobile.php";
 
         <div class="col-md-6">
             <div id="qrcode">
-                <strong>QRCode</strong>
+                <strong><?php echo Language::lang('qrcode');?></strong>
                 <img src="" id="qrcode_image">
-                <?php if (CheckMobile::is_mobile()){ ?>
-                <a href="" class="go_to_pay">跳转支付</a>
+                <?php if (!CheckMobile::is_mobile()){ ?>
+                <a href="" class="go_to_pay">Go Payment</a>
                 <?php } ?>
             </div>
 
             <div>
-                <strong>签名参数</strong>
-                <span id="sign_string"></span>
+                <strong><?php echo Language::lang('signature_string') ?></strong>
+                <p id="sign_string"></p>
             </div>
 
             <div>
-                <strong>请求的参数</strong>
+                <strong><?php echo Language::lang('request_params'); ?></strong>
                 <pre id="request_params"></pre>
             </div>
             <div>
-                <strong>响应的参数</strong>
+                <strong><?php echo Language::lang('response_params');?></strong>
                 <pre id="response_params"></pre>
             </div>
         </div>
@@ -144,18 +147,18 @@ require_once "../utils/CheckMobile.php";
         var notify_url = $('#notify_url').val();// 选填
 
         if (payment == "") {
-            layer.msg('Payment不能为空');
+            layer.msg("Payment can't null");
             return;
         }
         if (payment == "micropay") {
             if (code == "") {
-                layer.msg('Code不能为空');
+                layer.msg("Code can't null");
                 return;
             }
         }
 
         if (total_fee == "" || total_fee < 2) {
-            layer.msg("total_fee不能为空且不能小于2")
+            layer.msg("total_fee Should be greater than 2")
             return;
         }
 
@@ -189,7 +192,6 @@ require_once "../utils/CheckMobile.php";
                 $('#response_params').html(formatJson(result['data']['response_params']))
                 $('#request_params').html(formatJson(result['data']['request_params']))
 
-
                 // 调用刷新
                 refresh_data();
 
@@ -206,7 +208,7 @@ require_once "../utils/CheckMobile.php";
 
                 // 加载动画
                 //var index2 = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
-                var index2 = layer.msg('刷新订单状态', {
+                var index2 = layer.msg("<?php echo Language::lang('refresh_order_status');?>", {
                     icon: 16
                     ,shade: 0.01
                 });
@@ -214,22 +216,19 @@ require_once "../utils/CheckMobile.php";
                 $.post("./deal_order_api.php",{"out_trade_no":out_trade_no,"submit_type":"check"},function (result) {
                     setTimeout(function () {
                         layer.close(index2);
-
-                    },1000)
+                    },1000);
 
                     var result = JSON.parse(result);
 
                     if (result.code == 200){
                         $('#response_params').html(formatJson(result['data']['response_params']))
                     }
-
-                })
+                });
 
                 refresh_data()
             },6000)
         }
     }
-
 
 </script>
 

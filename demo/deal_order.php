@@ -7,6 +7,7 @@ $api_host = $_SESSION['api_host'];
 if (empty($user_params) || empty($api_host)) {
     header("location:login.html");
 }
+require_once "../utils/Language.php";
 ?>
 
 <!DOCTYPE html>
@@ -41,23 +42,23 @@ if (empty($user_params) || empty($api_host)) {
                     <input type="text" name="out_trade_no" class="form-control" id="out_trade_no" placeholder="商户订单号">
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-success submit_button" id="check">Check</button>
-                    <button type="button" class="btn btn-warning submit_button" id="close">Close</button>
-                    <button type="button" class="btn btn-danger submit_button" id="reverse">Reverse</button>
+                    <button type="button" class="btn btn-success submit_button" id="check"><?php echo Language::lang('check_order');?></button>
+                    <button type="button" class="btn btn-warning submit_button" id="close"><?php echo Language::lang('close_order');?></button>
+                    <button type="button" class="btn btn-danger submit_button" id="reverse"><?php echo Language::lang('reverse_order');?></button>
                 </div>
             </form>
         </div>
         <div class="col-md-6">
             <div>
-                <strong>请求的参数</strong>
+                <strong><?php echo Language::lang('signature_string');?></strong>
+                <p id="sign_string"></p>
+            </div>
+            <div>
+                <strong><?php echo Language::lang('request_params');?></strong>
                 <pre id="request_params"></pre>
             </div>
             <div>
-                <strong>签名字符串</strong>
-                <span id="sign_string"></span>
-            </div>
-            <div>
-                <strong>响应的参数</strong>
+                <strong><?php echo Language::lang('response_params');?></strong>
                 <pre id="response_params"></pre>
             </div>
         </div>
