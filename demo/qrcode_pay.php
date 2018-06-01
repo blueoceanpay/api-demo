@@ -81,16 +81,14 @@ require_once "../utils/Language.php";
                     </ol>
                     <a href="<?php echo $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/demo/asyn_note_web.php' ?>" target="_blank"><?php echo $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/demo/asyn_note_web.php' ?></a>
                 </div>
-
             </form>
-
         </div>
 
         <div class="col-md-6">
             <div id="qrcode">
                 <strong><?php echo Language::lang('qrcode');?></strong>
                 <img src="" id="qrcode_image">
-                <?php if (!CheckMobile::is_mobile()){ ?>
+                <?php if (CheckMobile::is_mobile()){ ?>
                 <a href="" class="go_to_pay">Go Payment</a>
                 <?php } ?>
             </div>
