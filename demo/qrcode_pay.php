@@ -178,7 +178,7 @@ require_once "../utils/Language.php";
             $('#request_params').empty();
 
             $('#sign_string').html(result['data']['signString']);
-            if (result.code == 200) {
+            if (result.code == 200 || result.code == 201) {
                 $('#qrcode').show();
                 $('#qrcode_image').attr('src', result.data.qrcode_url);
 
