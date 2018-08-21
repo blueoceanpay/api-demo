@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(E_ALL^E_NOTICE);
 
 // 获取SESSION
 $user_params = $_SESSION['user_params'];
