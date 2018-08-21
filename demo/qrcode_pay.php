@@ -1,11 +1,12 @@
 <?php
 session_start();
+error_reporting(E_ALL^E_NOTICE);
 
 // 获取SESSION
 $user_params = $_SESSION['user_params'];
 $api_host = $_SESSION['api_host'];
 if (empty($user_params) || empty($api_host)) {
-    header("location:login.html");
+    header("location:login.php");
 }
 require_once "../utils/CheckMobile.php";
 require_once "../utils/Language.php";

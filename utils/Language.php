@@ -10,10 +10,13 @@ session_start();
 class Language
 {
     public static function lang($message){
-        $la = $_SESSION['language'];
-        if (empty($la)){
+
+        if (isset($_SESSION['language'])){
+            $la = $_SESSION['language'];
+        }else{
             $la = 'cn';
         }
+
         $languages = (array)require "language/".$la.".php";
 //        var_dump($languages);
         $data = $languages[$message];

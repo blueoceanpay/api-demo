@@ -5,7 +5,7 @@ session_start();
 $user_params = $_SESSION['user_params'];
 $api_host = $_SESSION['api_host'];
 if (empty($user_params) || empty($api_host)) {
-    header("location:login.html");
+    header("location:login.php");
 }
 require_once "../utils/Language.php";
 ?>

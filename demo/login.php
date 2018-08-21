@@ -1,5 +1,6 @@
 <?php
 require "../utils/Language.php";
+error_reporting(E_ALL^E_NOTICE);
 ?>
 
 <!DOCTYPE html>
@@ -7,10 +8,10 @@ require "../utils/Language.php";
 <head>
     <meta charset="UTF-8">
     <title>Login In</title>
-    <script src="resource/jquery-3.3.1.min.js"></script>
-    <script src="resource/bootstrap.min.js"></script>
-    <script src="resource/layer/layer.js"></script>
-    <link rel="stylesheet" type="text/css" href="resource/bootstrap.min.css">
+    <script src="./resource/jquery-3.3.1.min.js"></script>
+    <script src="./resource/bootstrap.min.js"></script>
+    <script src="./resource/layer/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="./resource/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
@@ -81,7 +82,7 @@ require "../utils/Language.php";
             var result = JSON.parse(result);
             layer.msg(result.message);
             if (result.code == 200){
-                window.location.href="../index.html";
+                window.location.href="../index.php";
             }
         });
 
