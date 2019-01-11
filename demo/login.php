@@ -26,11 +26,11 @@ error_reporting(E_ALL^E_NOTICE);
     <form id="form" action="login_api.php">
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" name="email" class="form-control" id="email" value="app.developer@blueoceanpay.com">
+            <input type="email" name="email" class="form-control" id="email" value="">
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" name="password" class="form-control" id="password" value="123456">
+            <input type="password" name="password" class="form-control" id="password" value="">
         </div>
         <div class="form-group">
             <select name="api_host" class="form-control" id="api_host">
@@ -47,9 +47,7 @@ error_reporting(E_ALL^E_NOTICE);
 
     <div>
         <h6><?php echo Language::lang('test_account');?>:</h6>
-        <span>app.developer@blueoceanpay.com</span>
-        <br>
-        <span>123456</span>
+
     </div>
 </div>
 
