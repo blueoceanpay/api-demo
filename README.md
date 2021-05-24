@@ -2,5 +2,4 @@
 
 ### online demo:
 
-
-[demo.blueoceanpay.cn](http://demo.blueoceanpay.cn)
+[http://demo.blueoceantech.co/](http://demo.blueoceantech.co/)
